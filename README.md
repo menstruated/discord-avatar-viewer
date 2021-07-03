@@ -8,11 +8,11 @@ How to install
 
     # Installing the requirements
     
-    **Linux / Mac:** python3 -m pip install -r requirements.txt
-    **Windows:** py -3 -m pip install -r requirements.txt
+    Linux / Mac: python3 -m pip install -r requirements.txt
+    Windows: py -3 -m pip install -r requirements.txt
      
     # Upgrading discord.py (Do this if you receive random crashes)
 
-    **Linux / Mac:** python3 -m pip --upgrade discord.py
-    **Windows:** py -3 -m pip --upgrade discord.py
+    Linux / Mac: python3 -m pip --upgrade discord.py
+    Windows: py -3 -m pip --upgrade discord.py
   
