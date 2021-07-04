@@ -6,6 +6,7 @@ from discord.ext import commands
 import json
 import time
 import sys
+import datetime
 
 if not os.path.exists('config.json'):
     data = {
@@ -62,7 +63,12 @@ async def on_ready():
         print()
         print("[+] Made by cnr [+]".center(width))
         print()
-        print("[-] Commands:".center(width))
+        print(f"Prefix: {prefix}")
+        print(f"Current User: {Client.user}".center(width))
+        print(f"User ID: {Client.user.id}".center(width))
+        print(f"Date: {datetime.date.today().strftime('%d, %B %Y')}")
+        print()
+        print("[+] Commands:".center(width))
         print(f" {prefix}av (displays a user's avatar)".center(width))
     ui()
  
