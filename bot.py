@@ -3,14 +3,40 @@ import os
 import shutil
 import subprocess
 from discord.ext import commands
+import json
+import time
+import sys
 
-token = input('What is your token?\n')
-prefix = input('Please choose a prefix for your commands e.g "+"\n')
+if not os.path.exists('config.json'):
+    data = {
+        'token': "",
+        'prefix': "",
+    }
+    with open('config.json', 'w') as f:
+        json.dump(data, f)
+
+config = json.loads(open("config.json","r").read())
+token = config['token']
+prefix = config['prefix']
+
+def checkConfig():
+    if not token == "" and not prefix == "":
+        return
+    else: 
+        if token == "":
+            config['token'] = input('What is your token?\n')
+        if prefix == "":
+            config['prefix'] = input('Please choose a prefix for your commands e.g "+"\n')
+        open('config.json','w+').write(json.dumps(config,indent=4,sort_keys=True))
+        print('The program will now close so everything works correctly.')
+        time.sleep(5)
+        sys.exit()
+        return
 
 Client = discord.Client()
 Client = commands.Bot(
     description='cnr selfbot',
-    command_prefix=prefix,
+    command_prefix=config['prefix'],
     self_bot=True
 )
 Client.remove_command('help') 
@@ -56,4 +82,5 @@ async def on_ready():
             embed = getav(ctx.message.mentions[0].avatar_url, ctx.message.mentions[0])
         await ctx.send(embed=embed,delete_after=30)
 
-Client.run(token, bot=False, reconnect=True)
+checkConfig()
+Client.run(config['token'], bot=False, reconnect=True)
