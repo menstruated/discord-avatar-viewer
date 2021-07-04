@@ -63,12 +63,13 @@ async def on_ready():
         print()
         print("[+] Made by cnr [+]".center(width))
         print()
-        print(f"Prefix: {prefix}")
         print(f"Current User: {Client.user}".center(width))
         print(f"User ID: {Client.user.id}".center(width))
-        print(f"Date: {datetime.date.today().strftime('%d, %B %Y')}")
         print()
-        print("[+] Commands:".center(width))
+        print(f"Prefix: {prefix}".center(width))
+        print(f"Date: {datetime.date.today().strftime('%d, %B %Y')}".center(width))
+        print()
+        print("Commands:".center(width))
         print(f" {prefix}av (displays a user's avatar)".center(width))
     ui()
  
@@ -83,9 +84,9 @@ async def on_ready():
                 embed = getav(ctx.message.author.avatar_url, ctx.author)
             else:
                 if not args[1].isdigit():
-                    embed = getembed(f"**{args[1]}** is not a valid number lol")
+                    embed = getembed(f"**{args[1]}** is not a valid user.")
                     return await ctx.send(embed=embed,delete_after=30)
-                user = bot.get_user(int(args[1]))
+                user = Client.get_user(int(args[1]))
                 if user == None:
                     return await ctx.send(embed=getembed(f"User ID **{args[1]}** is invalid."))
                 embed = getav(user.avatar_url, user)
