@@ -19,6 +19,13 @@ config = json.loads(open("config.json","r").read())
 token = config['token']
 prefix = config['prefix']
 
+def getembed(text):
+    embed = discord.Embed(
+        description=text,
+        color=0x2f3136
+    )
+    return embed
+
 def checkConfig():
     if not token == "" and not prefix == "":
         return
@@ -52,13 +59,11 @@ async def on_ready():
 
     def ui():
         print()
-        print("owo".center(width))
         print()
-        print("[-] Developed by cnr [-]".center(width))
-        print("[-] User: {0} [-]".format(Client.user).center(width))
+        print("[+] Made by cnr [+]".center(width))
         print()
-        print("[-] Commands:".format(Client.user).center(width))
-        print(f" {prefix}av (displays a user's avatar)".format(Client.user).center(width))
+        print("[-] Commands:".center(width))
+        print(f" {prefix}av (displays a user's avatar)".center(width))
     ui()
  
 
